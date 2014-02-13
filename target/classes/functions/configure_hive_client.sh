@@ -1,33 +1,28 @@
 function configure_hive_client(){
 
-source /etc/profile
 
-#these hardcoded values should probably be removed later
+    source /etc/profile
 
-export HADOOP_HOME=/usr/local/hadoop
+    #these hardcoded values should probably be removed later
 
-
-
-cat > $HIVE_HOME/hive-site.xml <<EOF
-
+    export HADOOP_HOME=/usr/local/hadoop
+    
+    #configuration file to overwrite hive defaultas
+        #it's entirely empty for now, but hopefully more 
+        #functionality will be added shortly
+    cat > $HIVE_HOME/hive-site.xml <<EOF
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
- 
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>     
 <configuration>
 </configuration>
 
 EOF
 
-echo "export PATH=$HIVE_HOME/bin:$PATH"
+    #Installing hive entirely on name node with local metadata
+    #these are used to setup hadoop fs dirs for hive 
 
-#Installing hive entirely on name node with local metadata
-
-#these are used to setup hadoop fs dirs for hive 
-
-hadoop fs -mkdir /tmp
-hadoop fs -chmod a+w /tmp
-hadoop fs -mkdir /user/hive/warehouse
-hadoop fs -chmod a+w /user/hive/warehous
-
-
+    hadoop fs -mkdir /tmp
+    hadoop fs -chmod a+w /tmp
+    hadoop fs -mkdir /user/hive/warehouse
+    hadoop fs -chmod a+w /user/hive/warehous
 }

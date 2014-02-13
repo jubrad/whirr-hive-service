@@ -14,6 +14,8 @@ instructions:
 4. Add the Hive-client to the TaskTracker/NameNode.   
 5. Connect to the cluster on the URL printed to the console
 
+or
+1-3: copy the jar from target into Whirr's lib dir
 
 To Do:
 create hive-metastore role
