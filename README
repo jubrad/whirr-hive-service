@@ -1,0 +1,21 @@
+Basic hive service for whirr
+
+Functionality:
+curls,unpacks, and configures a stable version of hive.
+
+To Use:
+To run the demo you need an EC2 account and you should set the AWS_ACCESS_KEY_ID
+and AWS_SECRET_ACCESS_KEY environment properties. Then follow these
+instructions:
+
+1. Download and install the latest version of Whirr
+2. Build this project using "mvn clean install"
+3. Copy the generated JAR file to Whirr's lib directory
+4. Add the Hive-client to the TaskTracker/NameNode.   
+5. Connect to the cluster on the URL printed to the console
+
+
+To Do:
+create hive-metastore role
+Use variable versions of hive
+Add Configurable options in hive-site.xml
