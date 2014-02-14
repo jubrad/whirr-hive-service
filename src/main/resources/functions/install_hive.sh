@@ -9,5 +9,4 @@ function install_hive(){
 
     #adds hive to the path
     echo "PATH=$HIVE_HOME/bin:$PATH" >> /etc/profile
-
 }

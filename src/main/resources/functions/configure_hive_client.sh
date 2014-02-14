@@ -5,12 +5,12 @@ function configure_hive_client(){
 
     #these hardcoded values should probably be removed later
 
-    export HADOOP_HOME=/usr/local/hadoop
     
     #configuration file to overwrite hive defaultas
-        #it's entirely empty for now, but hopefully more 
-        #functionality will be added shortly
+     #it's entirely empty for now, but hopefully more #functionality will be added shortly
+    
     cat > $HIVE_HOME/hive-site.xml <<EOF
+
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>     
 <configuration>
