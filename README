@@ -11,7 +11,7 @@ instructions:
 1. Download and install the latest version of Whirr
 2. Build this project using "mvn clean install"
 3. Copy the generated JAR file to Whirr's lib directory
-4. Add the Hive-client to the TaskTracker/NameNode.   
+4. Add the hive-client to the TaskTracker/NameNode.   
 5. Connect to the cluster on the URL printed to the console
 
 or

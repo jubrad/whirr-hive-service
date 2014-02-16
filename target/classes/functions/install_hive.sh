@@ -8,5 +8,10 @@ function install_hive(){
     echo "export HIVE_HOME=/usr/local/hive-0.11.0" >> /etc/profile
 
     #adds hive to the path
-    echo "PATH=$HIVE_HOME/bin:$PATH" >> /etc/profile
+    cat > /etc/bin/hadoop <<EOF
+#!/bin/sh
+
+exec /$HADOOP_HOME/bin/hive
+    
+EOF 
 }

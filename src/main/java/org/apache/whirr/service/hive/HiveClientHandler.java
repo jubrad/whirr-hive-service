@@ -7,6 +7,14 @@ import java.io.IOException;
 
 import org.apache.whirr.Cluster;
 import org.apache.whirr.Cluster.Instance;
+
+
+// these are needed to get the version config working
+import org.apache.whirr.ClusterSpec;
+import org.apache.whirr.RolePredicates;
+import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationException;
+
 import org.apache.whirr.service.ClusterActionEvent;
 import org.apache.whirr.service.ClusterActionHandlerSupport;
 import org.apache.whirr.service.FirewallManager.Rule;
@@ -16,13 +24,26 @@ public class HiveClientHandler extends ClusterActionHandlerSupport {
 
     public static final String ROLE = "hive-client";
 
+
+    protected Configuration getConfiguration(ClusterSpec clusterSpec) throws IOException {
+        return getConfiguration(clusterSpec, "whirr-hadoop-default.properties");
+    }
+
+
     @Override public String getRole() {
         return ROLE;
     }
     
     @Override
     protected void beforeBootstrap(ClusterActionEvent event) throws IOException, InterruptedException{
-        addStatement(event,call("install_hive"));
+        // brings in the configuration file which will determine which hadoop version
+        ClusterSpec clusterSpec = event.getClusterSpec();
+        Configuration conf = getConfiguration(clusterSpec);
+        // the version is changed in the tarbal_url config so we just need to pull that down
+        
+        String tarballUrl= prepareRemoteFileUrl(event,conf.getString("whirr.hadoop.tarball.url"));
+
+        addStatement(event,call("install_hive", tarballUrl));
     }
 
     protected void beforeConfigure(ClusterActionEvent event) throws IOException, InterruptedException{
