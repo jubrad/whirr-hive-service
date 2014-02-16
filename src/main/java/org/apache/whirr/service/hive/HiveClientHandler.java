@@ -26,7 +26,7 @@ public class HiveClientHandler extends ClusterActionHandlerSupport {
 
 
     protected Configuration getConfiguration(ClusterSpec clusterSpec) throws IOException {
-        return getConfiguration(clusterSpec, "whirr-hadoop-default.properties");
+        return getConfiguration(clusterSpec, "whirr-hive-default.properties");
     }
 
 
@@ -36,12 +36,12 @@ public class HiveClientHandler extends ClusterActionHandlerSupport {
     
     @Override
     protected void beforeBootstrap(ClusterActionEvent event) throws IOException, InterruptedException{
-        // brings in the configuration file which will determine which hadoop version
+        // brings in the configuration file which will determine which hive version
         ClusterSpec clusterSpec = event.getClusterSpec();
         Configuration conf = getConfiguration(clusterSpec);
         // the version is changed in the tarbal_url config so we just need to pull that down
         
-        String tarballUrl= prepareRemoteFileUrl(event,conf.getString("whirr.hadoop.tarball.url"));
+        String tarballUrl= prepareRemoteFileUrl(event,conf.getString("whirr.hive.tarball.url"));
 
         addStatement(event,call("install_hive", tarballUrl));
     }
@@ -50,10 +50,6 @@ public class HiveClientHandler extends ClusterActionHandlerSupport {
 /** this might be needed to find hadoop master, but I doubt it
     could also be used to find hive metatstore when that role is 
     built
-
-
-
-        Instance hadoop = cluster.getInstanceMatching(role(hadoop-master.ROLE));
         String hadoopMasterAddress = hadoop.getPrivateAddress().getHostAddress();
     }
 **/
