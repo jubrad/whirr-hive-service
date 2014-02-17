@@ -41,7 +41,9 @@ public class HiveClientHandler extends ClusterActionHandlerSupport {
         Configuration conf = getConfiguration(clusterSpec);
         // the version is changed in the tarbal_url config so we just need to pull that down
         
-        String tarballUrl= prepareRemoteFileUrl(event,conf.getString("whirr.hive.tarball.url"));
+//        String tarballUrl= prepareRemoteFileUrl(event,conf.getString("whirr.hive.tarball.url"));
+
+        String tarballUrl=conf.getString("whirr.hive.tarball.url");
 
         addStatement(event,call("install_hive", tarballUrl));
     }
