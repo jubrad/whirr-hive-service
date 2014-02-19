@@ -25,6 +25,7 @@ function install_hive(){
 
     #creates a symlink to the HIVE_HOME
     ln -s $HIVE_HOME /usr/local/hive
+
     #I was getting errors about this file not existing.
     touch /usr/bin/hive
     #creates an exectuable in /bin to launch hive
@@ -33,11 +34,13 @@ function install_hive(){
 
 exec $HIVE_HOME/bin/hive \$@   
 EOF
+
+
 # correcting permissions on usr/bin/hive
-chown $USER usr/bin/hive
+chown $USER /usr/bin/hive
 if [ $? -gt 0 ]
 then
-sudo chown $USER usr/bin/hive
+sudo chown $USER /usr/bin/hive
 fi
 
 sudo chmod u+x /usr/bin/hive 
