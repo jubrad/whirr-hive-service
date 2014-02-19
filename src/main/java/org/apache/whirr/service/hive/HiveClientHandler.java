@@ -2,8 +2,8 @@ package org.apache.whirr.service.hive;
 
 import static org.apache.whirr.RolePredicates.role;
 import static org.jclouds.scriptbuilder.domain.Statements.call;
-
 import java.io.IOException;
+import static java.lang.System.*;
 
 import org.apache.whirr.Cluster;
 import org.apache.whirr.Cluster.Instance;
@@ -39,13 +39,13 @@ public class HiveClientHandler extends ClusterActionHandlerSupport {
         // brings in the configuration file which will determine which hive version
         ClusterSpec clusterSpec = event.getClusterSpec();
         Configuration conf = getConfiguration(clusterSpec);
+        
         // the version is changed in the tarbal_url config so we just need to pull that down
         
-//        String tarballUrl= prepareRemoteFileUrl(event,conf.getString("whirr.hive.tarball.url"));
-
+//ignore        String tarballUrl= prepareRemoteFileUrl(event,conf.getString("whirr.hive.tarball.url"));
         String tarballUrl=conf.getString("whirr.hive.tarball.url");
-
-        addStatement(event,call("install_hive", tarballUrl));
+        String user=conf.getString("whirr.cluster-user");
+        addStatement(event,call("install_hive",tarballUrl,user));
     }
 
     protected void beforeConfigure(ClusterActionEvent event) throws IOException, InterruptedException{

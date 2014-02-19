@@ -10,12 +10,6 @@ function configure_hive_client(){
      #it's entirely empty for now, but hopefully more #functionality will be added shortly
     
     cat > $HIVE_HOME/hive-site.xml <<EOF
-
-<?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>     
-<configuration>
-</configuration>
-
 EOF
 
     #Installing hive entirely on name node with local metadata
@@ -24,5 +18,5 @@ EOF
     hadoop fs -mkdir /tmp
     hadoop fs -chmod a+w /tmp
     hadoop fs -mkdir /user/hive/warehouse
-    hadoop fs -chmod a+w /user/hive/warehous
+    hadoop fs -chmod a+w /user/hive/warehouse
 }
