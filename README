@@ -12,6 +12,7 @@ instructions:
 2. Build this project using "mvn clean install"
 3. Copy the generated JAR file to Whirr's lib directory
 4. Add the hive-client to the TaskTracker/NameNode.   
+(optional give version, or a hive tarbal url)
 5. Connect to the cluster on the URL printed to the console
 
 or
@@ -19,5 +20,4 @@ or
 
 To Do:
 create hive-metastore role
-Use variable versions of hive
 Add Configurable options in hive-site.xml
